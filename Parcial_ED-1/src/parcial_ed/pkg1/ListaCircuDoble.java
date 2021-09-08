@@ -1,6 +1,9 @@
 
 package parcial_ed.pkg1;
 
+//import java.util.Scanner;
+
+
 
 public class ListaCircuDoble {
     
@@ -11,78 +14,146 @@ public class ListaCircuDoble {
     private Nodo anterior;
     
     public void lista(){
+        int y = 0; 
+        int x =1;
         
         while(cantidad!=0){
             
-            int x = 1;
+            y++;
             cantidad--;
             
             switch (x) {
                 case 1 ->                     {
                         Nodo nuevo = new Nodo();
+                        nuevo.setId(y);
                         primero = nuevo;
                         x++;
+                        System.out.println("sadwehdgf");
                         break;
                     }
                 case 2 ->                     {
                         Nodo nuevo = new Nodo();
+                        nuevo.setId(y);
                         primero.setNext(nuevo);
                         primero.setPrevious(nuevo);
                         nuevo.setNext(primero);
                         nuevo.setPrevious(primero);
                         anterior=nuevo;
                         x++;
+                        System.out.println("dvrtjt");
                         break;
                     }
                 default ->                     {
                         Nodo nuevo = new Nodo();
+                        nuevo.setId(y);
                         primero.setPrevious(nuevo);
                         nuevo.setNext(primero);
                         nuevo.setPrevious(anterior);
                         anterior=nuevo;
-                        entrada=nuevo;
+                        entrada=primero;
+                        current=entrada;
+                        System.out.println("gfdhdrf");
                         break;
                     }
             }
         }
     }
     
-    public void add(Nodo n){
+    public void add(Vehiculo n){
         
         if(entrada.getValor()==null){
-            entrada=n;
+            entrada.setValor(n);
             current=entrada;
         }else{
-            masCercano();
-        }
-        
+            masCercano(n);
+        }  
     }
     
-    public void masCercano(){
+    private void masCercano(Vehiculo n){
         int d=0;
         int i=0;
-        Nodo derecha = new Nodo();
-        Nodo izquierda = new Nodo();
         
-        
-        while(current!=null && d!=9){
+        while(current.getValor()!=null && d!=10){
             d++;
-            current=current.getNext();
-            derecha=current;
+            current=current.getNext();  
         }
-        while(current!=null && i!=9){
+        current=entrada;
+        while(current.getValor()!=null && i!=10){
             i++;
-            current=current.getPrevious();
-            izquierda=current;
+            current=current.getPrevious();    
         }
-        if(d==9){
+        current=entrada;
+        if(d==10){
             System.out.println("No hay mas espacios disponbles");
+            current=entrada;
         }else if(d<=i){
-            entrada=derecha;
+            while(current.getValor()!=null){
+            current=current.getNext();  
+            }
+            current.setValor(n);
+            entrada=current;
         }else{
-            entrada=izquierda;
+            while(current.getValor()!=null){
+            current=current.getPrevious(); 
+            }
+            current.setValor(n);
+            entrada=current;
         }
+    }
+    
+    public void buscarPlaca(String placa){
+        int i = 0;
+        boolean detener = true;
         
+        while(detener==true && i!=10){
+            if(current!=null){
+                if(current.getValor().getPlaca()!=placa){
+                    current=current.getNext();
+                }else{
+                    Nodo nuevo=new Nodo();
+                    current=nuevo;
+                    entrada=nuevo;
+                    detener=false;
+                }
+            }else{
+                try{
+                    current=current.getNext();
+                }catch(NullPointerException jodete){
+                current=current.getNext();
+            }       
+            }
+        }
+        if(i==9){
+            System.out.println("Esta placa no esta registrada");
+        }
+        current=entrada;
+    }
+    public void buscarCedula(String cedula){
+        int i = 0;
+        while(current.getValor().getCedula()!=cedula && i!=10){
+            current=current.getNext();
+            i++;
+        }
+        if(i==9){
+            System.out.println("Esta placa no esta registrada");
+        }else{
+            Nodo nuevo=new Nodo();
+            current=nuevo;
+        }        
+    }
+    
+    public void imprimir(){
+        int i = 0;
+        while(i!=10){
+            if(current!=null){
+                System.out.println("vehiculo: "+current.mostrarInfo()+current.getId());
+                current=current.getNext(); 
+            }else{
+                System.out.println("Espacio libre");
+            }
+            i++;
+        }
+        current=entrada;
     }
 
     public Nodo getEntrada() {
@@ -91,10 +162,6 @@ public class ListaCircuDoble {
 
     public Nodo getCurrent() {
         return current;
-    }
-
-    public Nodo getPrimero() {
-        return primero;
     }
 
     public Nodo getAnterior() {
