@@ -118,6 +118,7 @@ public class ListaCircuDoble implements IListable {
                     current.setValor(null);
                     entrada=current;
                     System.out.println("Vuelva pronto");
+                    
                     break;
                 } else {
                 current=current.getNext();

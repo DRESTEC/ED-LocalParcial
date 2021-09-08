@@ -19,8 +19,8 @@ public class Main {
                     String placa = JOptionPane.showInputDialog("Digite la placa");
                     String marca = JOptionPane.showInputDialog("Digite la marca");
                     String cedula = JOptionPane.showInputDialog("Digite su cedula");
-                    Vehiculo n = new Vehiculo(placa, marca, cedula);
-                    
+
+                    Vehiculo n = new Vehiculo(placa, marca, cedula );               
                     parqueadero.add(n);
                     break;
                 case 2:
