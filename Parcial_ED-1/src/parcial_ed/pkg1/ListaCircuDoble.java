@@ -5,7 +5,7 @@ package parcial_ed.pkg1;
 
 
 
-public class ListaCircuDoble {
+public class ListaCircuDoble implements IListable {
     
     private Nodo entrada;
     public int cantidad = 10;
@@ -105,6 +105,7 @@ public class ListaCircuDoble {
             }else if(current.getValor().getPlaca().equals(placa)){
                 current.setValor(null);
                 entrada=current;
+                System.out.println("Vuelva pronto");
                 break;
             } else {
                 current=current.getNext();
@@ -126,6 +127,7 @@ public class ListaCircuDoble {
             }else if(current.getValor().getPlaca().equals(cedula)){
                 current.setValor(null);
                 entrada=current;
+                System.out.println("Vuelva pronto");
                 break;
             } else {
                 current=current.getNext();
