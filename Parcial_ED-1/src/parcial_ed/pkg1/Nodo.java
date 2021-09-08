@@ -1,7 +1,6 @@
 
 package parcial_ed.pkg1;
 
-
 public class Nodo {
     
     private Nodo next;
@@ -9,11 +8,6 @@ public class Nodo {
     private Vehiculo valor;
     
     public Nodo(){
-        /*String placa=null;
-        String marca=null;
-        String cedula=null;
-        Vehiculo nuevo = new Vehiculo(placa, marca, cedula);
-        this.valor=nuevo;*/
         this.valor=null;
         this.next=null;
         this.previous=null;

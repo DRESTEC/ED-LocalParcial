@@ -1,10 +1,6 @@
 
 package parcial_ed.pkg1;
 
-//import java.util.Scanner;
-
-
-
 public class ListaCircuDoble implements IListable {
     
     private Nodo entrada;
@@ -52,6 +48,7 @@ public class ListaCircuDoble implements IListable {
         }
     }
     
+    @Override
     public void add(Vehiculo n){
         
         if(entrada.getValor()==null){
@@ -153,11 +150,4 @@ public class ListaCircuDoble implements IListable {
         current=entrada;
     }
 
-    public Nodo getEntrada() {
-        return entrada;
-    }
-
-    public Nodo getCurrent() {
-        return current;
-    }
 }
