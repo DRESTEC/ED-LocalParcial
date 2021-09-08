@@ -5,17 +5,17 @@ public  class Vehiculo {
     
     private String placa;
     private String marca;
-    private int cedula;
+    private String cedula;
 
   
-    public Vehiculo(String placa, String marca, int cedula){
+    public Vehiculo(String placa, String marca, String cedula){
         setPlaca(placa);
         setMarca(marca);
         setCedula(cedula);
     }
 
     public String getPlaca() {
-        return placa;
+            return placa;
     }
 
     private void setPlaca(String placa) {
@@ -23,18 +23,18 @@ public  class Vehiculo {
     }
 
     public String getMarca() {
-        return marca;
+            return marca;
     }
 
     private void setMarca(String marca) {
         this.marca = marca;
     }
 
-    public int getCedula() {
-        return cedula;
+    public String getCedula() {
+            return cedula;
     }
 
-    private void setCedula(int cedula) {
+    private void setCedula(String cedula) {
         this.cedula = cedula;
     }
 }
