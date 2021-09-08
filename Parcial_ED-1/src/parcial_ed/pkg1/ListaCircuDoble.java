@@ -93,19 +93,47 @@ public class ListaCircuDoble implements IListable {
     
     public void buscarPlaca(String placa){
         int i = 0;
+        int de = 0;
+        int iz = 0;
+        
+        while(current.getValor()!=null && de!=10){
+            de++;
+            current=current.getNext();  
+        }
+        current=entrada;
+        while(current.getValor()!=null && iz!=10){
+            iz++;
+            current=current.getPrevious();    
+        }        
         
         while( i!=11){
             
             i++;
-            if(current.getValor()==null){
+            
+            if(de<=iz){
+                
+                if(current.getValor()==null){
+                    current=current.getNext();
+                }else if(current.getValor().getPlaca().equals(placa)){
+                    current.setValor(null);
+                    entrada=current;
+                    System.out.println("Vuelva pronto");
+                    break;
+                } else {
                 current=current.getNext();
-            }else if(current.getValor().getPlaca().equals(placa)){
-                current.setValor(null);
-                entrada=current;
-                System.out.println("Vuelva pronto");
-                break;
-            } else {
-                current=current.getNext();
+                }               
+            }else{
+                
+                if(current.getValor()==null){
+                    current=current.getPrevious();
+                }else if(current.getValor().getPlaca().equals(placa)){
+                    current.setValor(null);
+                    entrada=current;
+                    System.out.println("Vuelva pronto");
+                    break;
+                } else {
+                    current=current.getPrevious();
+                }
             }
         }
         if(i==11){
@@ -115,19 +143,47 @@ public class ListaCircuDoble implements IListable {
     
     public void buscarCedula(String cedula){
         int i = 0;
+        int de = 0;
+        int iz = 0;
+        
+        while(current.getValor()!=null && de!=10){
+            de++;
+            current=current.getNext();  
+        }
+        current=entrada;
+        while(current.getValor()!=null && iz!=10){
+            iz++;
+            current=current.getPrevious();    
+        }        
         
         while( i!=11){
             
             i++;
-            if(current.getValor()==null){
+            
+            if(de<=iz){
+                
+                if(current.getValor()==null){
+                    current=current.getNext();
+                }else if(current.getValor().getPlaca().equals(cedula)){
+                    current.setValor(null);
+                    entrada=current;
+                    System.out.println("Vuelva pronto");
+                    break;
+                } else {
                 current=current.getNext();
-            }else if(current.getValor().getPlaca().equals(cedula)){
-                current.setValor(null);
-                entrada=current;
-                System.out.println("Vuelva pronto");
-                break;
-            } else {
-                current=current.getNext();
+                }               
+            }else{
+                
+                if(current.getValor()==null){
+                    current=current.getPrevious();
+                }else if(current.getValor().getPlaca().equals(cedula)){
+                    current.setValor(null);
+                    entrada=current;
+                    System.out.println("Vuelva pronto");
+                    break;
+                } else {
+                    current=current.getPrevious();
+                }
             }
         }
         if(i==11){
