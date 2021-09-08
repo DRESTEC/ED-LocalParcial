@@ -7,22 +7,14 @@ public class Nodo {
     private Nodo next;
     private Nodo previous;
     private Vehiculo valor;
-    private int id;
-    
-    public Nodo(String placa, String marca, String cedula){
-        Vehiculo nuevo = new Vehiculo(placa, marca, cedula);
-        this.valor=nuevo;
-        this.next=null;
-        this.previous=null;
-    }
     
     public Nodo(){
-        String placa=null;
+        /*String placa=null;
         String marca=null;
         String cedula=null;
         Vehiculo nuevo = new Vehiculo(placa, marca, cedula);
-        
-        this.valor=nuevo;
+        this.valor=nuevo;*/
+        this.valor=null;
         this.next=null;
         this.previous=null;
     }        
@@ -52,14 +44,6 @@ public class Nodo {
     }
 
     public String mostrarInfo(){
-        return "Placa: "+ valor.getPlaca()+"  Marca: "+ valor.getMarca()+"\nCedula: "+valor.getCedula();
+        return "Placa: "+ valor.getPlaca()+"  Marca: "+ valor.getMarca()+"  Cedula: "+valor.getCedula();
     }    
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 }

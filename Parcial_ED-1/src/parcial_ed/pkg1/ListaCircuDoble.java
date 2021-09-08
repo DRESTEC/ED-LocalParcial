@@ -11,48 +11,41 @@ public class ListaCircuDoble {
     public int cantidad = 10;
     private Nodo current;
     private Nodo primero;
-    private Nodo anterior;
+    private Nodo ultimo;
     
     public void lista(){
-        int y = 0; 
         int x =1;
         
         while(cantidad!=0){
-            
-            y++;
             cantidad--;
             
             switch (x) {
                 case 1 ->                     {
                         Nodo nuevo = new Nodo();
-                        nuevo.setId(y);
                         primero = nuevo;
                         x++;
-                        System.out.println("sadwehdgf");
                         break;
                     }
                 case 2 ->                     {
                         Nodo nuevo = new Nodo();
-                        nuevo.setId(y);
-                        primero.setNext(nuevo);
-                        primero.setPrevious(nuevo);
-                        nuevo.setNext(primero);
-                        nuevo.setPrevious(primero);
-                        anterior=nuevo;
+                        ultimo=nuevo;
+                        primero.setNext(ultimo);
+                        primero.setPrevious(ultimo);
+                        ultimo.setNext(primero);
+                        ultimo.setPrevious(primero);
+                        
                         x++;
-                        System.out.println("dvrtjt");
                         break;
                     }
                 default ->                     {
                         Nodo nuevo = new Nodo();
-                        nuevo.setId(y);
-                        primero.setPrevious(nuevo);
-                        nuevo.setNext(primero);
-                        nuevo.setPrevious(anterior);
-                        anterior=nuevo;
+                        ultimo.setNext(nuevo);
+                        nuevo.setPrevious(ultimo);
+                        ultimo=nuevo;
+                        primero.setPrevious(ultimo);
+                        ultimo.setNext(primero);
                         entrada=primero;
                         current=entrada;
-                        System.out.println("gfdhdrf");
                         break;
                     }
             }
@@ -63,9 +56,9 @@ public class ListaCircuDoble {
         
         if(entrada.getValor()==null){
             entrada.setValor(n);
-            current=entrada;
         }else{
-            masCercano(n);
+            Vehiculo nuevo =n;
+            masCercano(nuevo);
         }  
     }
     
@@ -103,53 +96,55 @@ public class ListaCircuDoble {
     
     public void buscarPlaca(String placa){
         int i = 0;
-        boolean detener = true;
         
-        while(detener==true && i!=10){
-            if(current!=null){
-                if(current.getValor().getPlaca()!=placa){
-                    current=current.getNext();
-                }else{
-                    Nodo nuevo=new Nodo();
-                    current=nuevo;
-                    entrada=nuevo;
-                    detener=false;
-                }
-            }else{
-                try{
-                    current=current.getNext();
-                }catch(NullPointerException jodete){
+        while( i!=11){
+            
+            i++;
+            if(current.getValor()==null){
                 current=current.getNext();
-            }       
+            }else if(current.getValor().getPlaca().equals(placa)){
+                current.setValor(null);
+                entrada=current;
+                break;
+            } else {
+                current=current.getNext();
             }
         }
-        if(i==9){
+        if(i==11){
             System.out.println("Esta placa no esta registrada");
         }
-        current=entrada;
     }
+    
     public void buscarCedula(String cedula){
         int i = 0;
-        while(current.getValor().getCedula()!=cedula && i!=10){
-            current=current.getNext();
+        
+        while( i!=11){
+            
             i++;
+            if(current.getValor()==null){
+                current=current.getNext();
+            }else if(current.getValor().getPlaca().equals(cedula)){
+                current.setValor(null);
+                entrada=current;
+                break;
+            } else {
+                current=current.getNext();
+            }
         }
-        if(i==9){
+        if(i==11){
             System.out.println("Esta placa no esta registrada");
-        }else{
-            Nodo nuevo=new Nodo();
-            current=nuevo;
-        }        
+        }
     }
     
     public void imprimir(){
         int i = 0;
         while(i!=10){
-            if(current!=null){
-                System.out.println("vehiculo: "+current.mostrarInfo()+current.getId());
+            if(current.getValor()!=null){
+                System.out.println("\nvehiculo: "+current.mostrarInfo());
                 current=current.getNext(); 
             }else{
                 System.out.println("Espacio libre");
+                current=current.getNext();
             }
             i++;
         }
@@ -162,9 +157,5 @@ public class ListaCircuDoble {
 
     public Nodo getCurrent() {
         return current;
-    }
-
-    public Nodo getAnterior() {
-        return anterior;
     }
 }
